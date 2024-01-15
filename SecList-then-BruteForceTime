@@ -1,0 +1,41 @@
+python
+import subprocess
+
+def check_password_with_VsPWList(password):
+    command = ['VsPWList', password]  # Replace with the actual command to run VsPWList
+    result = subprocess.run(command, capture_output=True, text=True)
+    output = result.stdout.strip()
+    return output
+
+def check_password_with_TimeToHack(password):
+    # Implement the TimeToHack password checker logic here
+    # Replace the following line with your actual implementation
+    # This is just a placeholder
+    time_to_hack_result = "TimeToHack result for " + password
+
+    return time_to_hack_result
+
+# Get password input from web form
+password = input("Enter a password: ")
+
+# Check password with VsPWList
+vs_pwlist_result = check_password_with_VsPWList(password)
+
+# If password is not found in VsPWList, check it with TimeToHack
+if not vs_pwlist_result:
+    time_to_hack_result = check_password_with_TimeToHack(password)
+
+    # Display TimeToHack result to the user
+    print("TimeToHack result:", time_to_hack_result)
+    print("Do you still want to use this password or change it?")
+    # Prompt for user input to continue or change password
+    user_choice = input("Enter 'Y' to continue or 'N' to change the password: ")
+
+    if user_choice.lower() == 'n':
+        # Handle password change logic here
+        print("Password change logic goes here")
+    else:
+        # Handle continue with password logic here
+        print("Continuing with the password")
+else:
+    print("Password found in VsPWList. Choose a different password.")
